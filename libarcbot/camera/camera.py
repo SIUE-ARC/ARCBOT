@@ -1,6 +1,7 @@
 import os
-import numpy as np
+
 import cv2
+import numpy as np
 
 
 class Camera(object):
@@ -11,7 +12,7 @@ class Camera(object):
     __low_rgb = None
     __high_rgb = None
 
-    def __init__(self, camera_id,testing=False):
+    def __init__(self, camera_id, testing=False):
         super(Camera, self).__init__()
         self.__testing = testing
         self.__camera_id = camera_id if camera_id > -1 else 0
@@ -59,7 +60,7 @@ class Camera(object):
         else:
             raise IOError("Unable to read from the Camera")
 
-    def find_contours_threshold(self, thresh_val = 0, max_val = 10, thresh_type=0):
+    def find_contours_threshold(self, thresh_val=0, max_val=10, thresh_type=0):
         # given a frame
         frame = self.get_frame()
         # convert the frame to grayscale
@@ -78,9 +79,9 @@ class Camera(object):
         # run in range given low and high HSV values and the frame
         mask = cv2.inRange(frame, low_rgb, high_rgb)
         # then erode the mask
-        mask = cv2.erode(mask, None) # TODO Need iteration count?
+        mask = cv2.erode(mask, None)  # TODO Need iteration count?
         # then dilate the image
-        mask = cv2.dilate(mask, None) # TODO Need iteration count?
+        mask = cv2.dilate(mask, None)  # TODO Need iteration count?
         # then find the contours
         # TODO Use cv2.RETR_EXTERNAL and cv2.CHAIN_APPROX_TC89_L1 like KIPR?
         image, contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -88,7 +89,7 @@ class Camera(object):
 
     def get_objects(self):
         # given the low and high RGB ranges
-        if(self.__low_rgb is None or self.__high_rgb is None):
+        if self.__low_rgb is None or self.__high_rgb is None:
             return []
         # given the image, contours, and hierarchy
         image, contours, hierarchy = self.find_contours_in_range(self.__low_rgb, self.__high_rgb)
