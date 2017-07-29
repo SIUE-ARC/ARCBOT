@@ -1,6 +1,6 @@
 import serial
-import io
 import glob
+
 
 class SerialManager(object):
     """SerialManager Interface"""
@@ -36,7 +36,7 @@ class SerialManager(object):
                 return serial.serial_for_url(self.__connection_string, timeout=1)
             else:
                 self.__connection_string = self.__find_arduino_port()
-                return  serial.Serial(self.__connection_string, self.__baudrate)
+                return serial.Serial(self.__connection_string, self.__baudrate)
         except serial.SerialException as e:
             raise
 
@@ -46,7 +46,7 @@ class SerialManager(object):
         ports = glob.glob('/dev/tty[A-Za-z]*', self.__baudrate)
         arduino = ""
         # iterate over each port
-        for port  in ports:
+        for port in ports:
             # try connecting to it
             try:
                 conn = serial.Serial(port, timeout=10)
@@ -64,7 +64,7 @@ class SerialManager(object):
                 raise
         return arduino
 
-    def send_command(self, command, callback = None):
+    def send_command(self, command, callback=None):
         # given  command
         command = command.encode('ascii')
         # send the command
