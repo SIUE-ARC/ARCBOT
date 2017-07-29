@@ -3,3 +3,6 @@ python:
   - "3.6"
 install: "pip install -r tests/requirements.txt"
 script: pytest
+branches:
+  only:
+    - master
