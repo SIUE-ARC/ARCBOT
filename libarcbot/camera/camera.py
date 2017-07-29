@@ -44,7 +44,8 @@ class Camera(object):
                 raise RuntimeError("Unable to open the camera")
         else:
             cwd = os.getcwd()
-            image_url = "/home/ryan/build/ARCBOT/libarcbot/camera/testimages/testimage.jpg"
+            print(cwd)
+            image_url = cwd + "/libarcbot/camera/testimages/testimage.jpg"
             try:
                 self.__capture = cv2.imread(image_url)
             except Exception:
