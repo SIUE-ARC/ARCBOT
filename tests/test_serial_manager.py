@@ -35,10 +35,15 @@ class TestSerialManager(TestCase):
         # and a serial manager
         serial_manager = SerialManager.get_instance(True)
         # and a callback function
-        callback_check_function = lambda result: self.assertEqual(command.encode('ascii'), result)
+
+        def callback_check_function(result): return self.assertEqual(
+            command.encode('ascii'), result)
         # and another callback for completeness
-        callback_check_function_2 = lambda result: self.assertNotEqual(incorrect.encode('ascii'), result)
+
+        def callback_check_function_2(result): return self.assertNotEqual(
+            incorrect.encode('ascii'), result)
         # send the command and call the callback
         result = serial_manager.send_command(command, callback_check_function)
         # send the command and call the second callback
-        result = serial_manager.send_command(command, callback_check_function_2)
+        result = serial_manager.send_command(
+            command, callback_check_function_2)
