@@ -36,20 +36,20 @@ class SerialManager(object):
                 return serial.serial_for_url(self.__connection_string, timeout=1)
             else:
                 self.__connection_string = self.__find_arduino_port()
-                return serial.Serial(self.__connection_string, self.__baudrate)
+                return serial.Serial(port=self.__connection_string, baudrate=self.__baudrate)
         except serial.SerialException as e:
             raise
 
     def __find_arduino_port(self):
         print(self.__serial_connection)
         # given a list of ports
-        ports = glob.glob('/dev/tty[A-Za-z]*', self.__baudrate)
+        ports = glob.glob('/dev/tty[A-Za-z]*')
         arduino = ""
         # iterate over each port
         for port in ports:
             # try connecting to it
             try:
-                conn = serial.Serial(port, timeout=10)
+                conn = serial.Serial(port=port, baudrate=self.__baudrate, timeout=10)
                 # attempt to send the "Hello" command
                 conn.write(self.__arduino_greeting.encode('ascii'))
                 # try getting a response
