@@ -3,8 +3,8 @@
 
 class Create(object):
     """docstring for Create."""
-    self.__serial_manager = None
-    self.__byte_order = 'big'
+    __serial_manager = None
+    __byte_order = 'big'
 
     def __init__(self, serial_manager):
         super(Create, self).__init__()
