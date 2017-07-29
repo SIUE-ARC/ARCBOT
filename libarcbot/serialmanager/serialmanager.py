@@ -8,9 +8,9 @@ class SerialManager(object):
     __instance = None
     __connection_string = None
     __serial_connection = None
-    __baudrate = 96200
-    __arduino_greeting = ""
-    __arduino_reponse = ""
+    __baudrate = 9600
+    __arduino_greeting = "ohai"
+    __arduino_reponse = "kthxbye"
 
     def __init__(self, testing=False):
         super(SerialManager, self).__init__()
