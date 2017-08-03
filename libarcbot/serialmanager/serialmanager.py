@@ -81,8 +81,9 @@ class SerialManager(object):
         command = command.encode('ascii')
         # send the command
         self.__serial_connection.write(command)
+        time.sleep(1)
         # get the number of bytes waiting in the input buffer
-        waiting = self.__serial_connection.in_waiting
+        waiting = self.__serial_connection.inWaiting()
         # get the result
         result = self.__serial_connection.read(waiting)
         # if the callback is valid
