@@ -1,6 +1,6 @@
 import serial
 import glob
-
+import time
 
 class SerialManager(object):
     """SerialManager Interface"""
@@ -8,14 +8,19 @@ class SerialManager(object):
     __instance = None
     __connection_string = None
     __serial_connection = None
-    __baudrate = 96200
-    __arduino_greeting = ""
-    __arduino_reponse = ""
+    __baudrate = 9600
+    __arduino_greeting = "ohai"
+    __arduino_reponse = "kthxbai"
 
     def __init__(self, testing=False):
         super(SerialManager, self).__init__()
         self.__testing = testing
         self.__serial_connection = self.__open_serial_connection()
+
+    def __del__(self):
+        if self.__serial_connection and self.__serial_connection.isOpen():
+            self.__serial_connection.close()
+            del(self.__serial_connection)
 
     @classmethod
     def get_instance(cls, testing=False):
@@ -41,19 +46,26 @@ class SerialManager(object):
             raise
 
     def __find_arduino_port(self):
-        print(self.__serial_connection)
         # given a list of ports
         ports = glob.glob('/dev/tty[A-Za-z]*')
         arduino = ""
         # iterate over each port
         for port in ports:
+            if arduino != "":
+                pass
             # try connecting to it
             try:
-                conn = serial.Serial(port=port, baudrate=self.__baudrate, timeout=10)
+                # establish the connection
+                conn = serial.Serial(port,self.__baudrate)
+                # waith until the UNO resets because of the serial connection
+                time.sleep(4)
                 # attempt to send the "Hello" command
                 conn.write(self.__arduino_greeting.encode('ascii'))
-                # try getting a response
-                response = conn.read()
+                time.sleep(1)
+                # get the number of bytes waiting in the input buffer
+                waiting = conn.inWaiting()
+                # get the response
+                response = conn.read(waiting)
                 # if the response is the same as the expected response (as a Byte array)
                 if response == self.__arduino_reponse.encode('ascii'):
                     # then this is the correct port
@@ -61,7 +73,7 @@ class SerialManager(object):
                 # close the connection
                 conn.close()
             except Exception as e:
-                raise
+                pass
         return arduino
 
     def send_command(self, command, callback=None):
