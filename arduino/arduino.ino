@@ -12,8 +12,8 @@ void setup()
     create_init();
     while(!Serial);
 
-    pinMode(CREATE_TX, OUTPUT);
-    pinMode(CREATE_RX, INPUT);
+    pinMode(TX, OUTPUT);
+    pinMode(RX, INPUT);
     data = (char*)malloc(SONG_DATA_SIZE); //buffer large enough to hold any data for any command.
 }
 
@@ -54,8 +54,14 @@ void command_lookup()
 
     if(Serial.available() > 0)
     {
+        i = 0;
         command = Serial.read();
-
+        Serial.readBytesUntil(TERMINATOR, data, SONG_DATA_SIZE);
+       /* while(Serial.available() > 0)
+        {
+            data[i] = Serial.read();
+        }*/
+        
         switch(command)
         {
             case MODESAFE:
@@ -79,7 +85,7 @@ void command_lookup()
             case DRIVE_DIRECT:
                 for(i = 0; i < DRIVE_DIRECT_DATA_SIZE; i++)
                 {
-                    if(Serial.available() > 0)
+                    if(data[i] != TERMINATOR)
                         data[i] = Serial.read();
                     else break;
                 }
@@ -93,7 +99,7 @@ void command_lookup()
             case DRIVE: 
                 for(i = 0; i < DRIVE_DATA_SIZE; i++)
                 {
-                    if(Serial.available() > 0)
+                    if(data[i] != TERMINATOR)
                         data[i] = Serial.read();
                     else break;
                 }
@@ -113,7 +119,7 @@ void command_lookup()
                 break;
             default:
                 #ifdef DEBUG
-                Serial.print("Invalid command");
+                Serial.println("Invalid command");
                 #endif
         }
     }

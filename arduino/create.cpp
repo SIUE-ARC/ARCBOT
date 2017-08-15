@@ -1,7 +1,7 @@
 #include "create.h"
 #include <arduino.h>
 
-SoftwareSerial create_link(CREATE_RX, CREATE_TX);
+SoftwareSerial create_link(RX, TX);
 
 void create_init()
 {
@@ -54,9 +54,9 @@ void demo(char data)
 void drive(char* data)
 {
     #ifdef DEBUG
-    short speed = (data[0] << 8);
+    short speed = data[0]*256;
     speed |= data[1];
-    short radius = (data[2] << 8);
+    short radius = data[2]*256;
     radius |= data[3];
 
     Serial.print("Sending speed: ");
@@ -70,9 +70,9 @@ void drive(char* data)
 void drive_direct(char* data)
 {
     #ifdef DEBUG
-    short rspeed = (data[0] << 8);
+    short rspeed = data[0]*256;
     rspeed |= data[1];
-    short lspeed = (data[2] << 8);
+    short lspeed = data[2]*256;
     lspeed |= data[3];
 
     Serial.print("Sending right wheel speed: ");

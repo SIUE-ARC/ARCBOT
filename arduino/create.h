@@ -8,8 +8,8 @@
 #define     QUERY_DATA_SIZE             257
 #define     WAIT_DISTANCE_DATA_SIZE     2
 #define     WAIT_ANGLE_DATA_SIZE        2
-#define     CREATE_TX                   2
-#define     CREATE_RX                   3
+#define     TX                          2
+#define     RX                          3
 #define     BAUD                        57600
 #define     DEBUG
 

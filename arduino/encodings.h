@@ -85,4 +85,5 @@ const char     MODESAFE        =    'S';
 const char     MODEFULL        =    'F';
 const char     WHEELSTOP       =    's';
 const char     USEDEMO         =    'd';
+const char     TERMINATOR      =    '\r';
 
