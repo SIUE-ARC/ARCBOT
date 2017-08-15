@@ -2,7 +2,7 @@
 #include "encodings.h"
 
 #define     DRIVE_DATA_SIZE             4
-#define     DIRVE_DIRECT_DATA_SIZE      4
+#define     DRIVE_DIRECT_DATA_SIZE      4
 #define     LEDS_DATA_SIZE              3
 #define     SONG_DATA_SIZE              514
 #define     QUERY_DATA_SIZE             257

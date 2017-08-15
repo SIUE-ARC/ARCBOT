@@ -75,3 +75,14 @@
 #define     RADREQUESTID    40
 #define     RVELREQUESTID   41
 #define     LVELREQUESTID   42
+
+/*  Arduino Commands */
+const char     DRIVE           =    'D';
+const char     DRIVE_DIRECT    =    'r';
+const char     WHEELLEFT       =    'L';
+const char     WHEELRIGHT      =    'R';
+const char     MODESAFE        =    'S';
+const char     MODEFULL        =    'F';
+const char     WHEELSTOP       =    's';
+const char     USEDEMO         =    'd';
+

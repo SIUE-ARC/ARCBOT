@@ -51,3 +51,35 @@ void demo(char data)
     #endif
 }
 
+void drive(char* data)
+{
+    #ifdef DEBUG
+    short speed = (data[0] << 8);
+    speed |= data[1];
+    short radius = (data[2] << 8);
+    radius |= data[3];
+
+    Serial.print("Sending speed: ");
+    Serial.print(speed);
+    Serial.print(" Radius: ");
+    Serial.println(radius);
+    #endif
+    create_link.write(data, DRIVE_DATA_SIZE);
+}
+
+void drive_direct(char* data)
+{
+    #ifdef DEBUG
+    short rspeed = (data[0] << 8);
+    rspeed |= data[1];
+    short lspeed = (data[2] << 8);
+    lspeed |= data[3];
+
+    Serial.print("Sending right wheel speed: ");
+    Serial.println(rspeed);
+    Serial.print("Sending left wheel speed: ");
+    Serial.println(lspeed);
+    #endif
+    create_link.write(data, DRIVE_DIRECT_DATA_SIZE);
+}
+
