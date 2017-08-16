@@ -6,7 +6,6 @@ SoftwareSerial create_link(RX, TX);
 void create_init()
 {
     create_link.begin(BAUD);
-    delay(50);
     create_link.write(STARTOP);
     #ifdef DEBUG
     Serial.println("Create link established");
@@ -64,6 +63,7 @@ void drive(char* data)
     Serial.print(" Radius: ");
     Serial.println(radius);
     #endif
+    create_link.write(DRIVEOP);
     create_link.write(data, DRIVE_DATA_SIZE);
 }
 
@@ -80,6 +80,7 @@ void drive_direct(char* data)
     Serial.print("Sending left wheel speed: ");
     Serial.println(lspeed);
     #endif
+    create_link.write(DRIVEDOP);
     create_link.write(data, DRIVE_DIRECT_DATA_SIZE);
 }
 

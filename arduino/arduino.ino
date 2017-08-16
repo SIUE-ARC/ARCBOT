@@ -29,10 +29,10 @@ void loop()
 
 void discover()
 {
-    char buff[4];
+    char buff[5];
     unsigned char index = 0;
 
-    while(index < 4)
+    while(index < 5)
     {
         if(Serial.available() > 0)
         {
@@ -41,7 +41,7 @@ void discover()
         }
     }
 
-    if(strncmp(buff, "ohai", 4) == 0)
+    if(strncmp(buff, "ohai\r", 5) == 0)
     {
         found = 1;
         Serial.print("kthxbai");
@@ -54,9 +54,8 @@ void command_lookup()
 
     if(Serial.available() > 0)
     {
-        i = 0;
         command = Serial.read();
-        Serial.readBytesUntil(TERMINATOR, data, SONG_DATA_SIZE);
+        i = Serial.readBytesUntil(TERMINATOR, data, SONG_DATA_SIZE);
        /* while(Serial.available() > 0)
         {
             data[i] = Serial.read();
@@ -71,7 +70,7 @@ void command_lookup()
                 oi_full();
                 break;
             case USEDEMO:
-                if(Serial.available() > 0)
+                if(i > 0)
                     data[0] = Serial.read();
                 #ifdef DEBUG
                 else 
@@ -83,28 +82,16 @@ void command_lookup()
                 demo(data[0]); 
                 break;
             case DRIVE_DIRECT:
-                for(i = 0; i < DRIVE_DIRECT_DATA_SIZE; i++)
-                {
-                    if(data[i] != TERMINATOR)
-                        data[i] = Serial.read();
-                    else break;
-                }
-                
-                if( i == 4) drive_direct(data);
+                if( i == 4) 
+                    drive_direct(data);
                 
                 #ifdef DEBUG
                 else Serial.println("Not enough data sent");
                 #endif
                 break;
-            case DRIVE: 
-                for(i = 0; i < DRIVE_DATA_SIZE; i++)
-                {
-                    if(data[i] != TERMINATOR)
-                        data[i] = Serial.read();
-                    else break;
-                }
-                
-                if( i == 4) drive(data);
+            case DRIVE:                 
+                if( i == 4) 
+                    drive(data);
                 
                 #ifdef DEBUG
                 else Serial.println("Not enough data sent");
