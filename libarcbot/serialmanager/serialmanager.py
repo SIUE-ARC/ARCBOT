@@ -1,6 +1,7 @@
 import serial
 import glob
 import time
+from libarcbot.utils.commandconstants import __CommandConstants
 
 class SerialManager(object):
     """SerialManager Interface"""
@@ -11,6 +12,7 @@ class SerialManager(object):
     __baudrate = 9600
     __arduino_greeting = "ohai"
     __arduino_reponse = "kthxbai"
+    __command_constants = __CommandConstants()
 
     def __init__(self, testing=False):
         super(SerialManager, self).__init__()
@@ -78,6 +80,8 @@ class SerialManager(object):
 
     def send_command(self, command, callback=None):
         # given  command
+        command = command + self.__command_constants.SERIAL_TERMINATOR
+        # encode the command for serial transmission
         command = command.encode('ascii')
         # send the command
         self.__serial_connection.write(command)
