@@ -33,7 +33,7 @@ void oi_full()
 void demo(char data)
 {
     create_link.write(DEMOOP);
-    
+
     if(data < 0 || data > 9)
     {
         #ifdef DEBUG
@@ -53,10 +53,14 @@ void demo(char data)
 void drive(char* data)
 {
     #ifdef DEBUG
-    short speed = data[0]*256;
-    speed |= data[1];
-    short radius = data[2]*256;
-    radius |= data[3];
+    short speed = (short)data[0]*256;
+    Serial.print("Sending speed: ");
+    Serial.print(speed);
+    speed += (short)data[1];
+    short radius = (short)data[2]*256;
+    Serial.print(" Radius: ");
+    Serial.println(radius);
+    radius += (short)data[3];
 
     Serial.print("Sending speed: ");
     Serial.print(speed);
@@ -71,9 +75,9 @@ void drive_direct(char* data)
 {
     #ifdef DEBUG
     short rspeed = data[0]*256;
-    rspeed |= data[1];
+    rspeed += data[1];
     short lspeed = data[2]*256;
-    lspeed |= data[3];
+    lspeed += data[3];
 
     Serial.print("Sending right wheel speed: ");
     Serial.println(rspeed);
@@ -83,4 +87,3 @@ void drive_direct(char* data)
     create_link.write(DRIVEDOP);
     create_link.write(data, DRIVE_DIRECT_DATA_SIZE);
 }
-

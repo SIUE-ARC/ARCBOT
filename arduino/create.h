@@ -4,8 +4,8 @@
 #define     DRIVE_DATA_SIZE             4
 #define     DRIVE_DIRECT_DATA_SIZE      4
 #define     LEDS_DATA_SIZE              3
-#define     SONG_DATA_SIZE              514
-#define     QUERY_DATA_SIZE             257
+#define     SONG_DATA_SIZE              63
+#define     QUERY_DATA_SIZE             63
 #define     WAIT_DISTANCE_DATA_SIZE     2
 #define     WAIT_ANGLE_DATA_SIZE        2
 #define     TX                          2

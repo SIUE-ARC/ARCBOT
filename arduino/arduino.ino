@@ -1,7 +1,7 @@
 #include "create.h"
 #include <string.h>
 
-#define     INPUT_BUFFER_SIZE       515
+#define     INPUT_BUFFER_SIZE       64
 
 char found = 0;
 unsigned int i; //loop var
@@ -17,6 +17,13 @@ void setup()
     pinMode(TX, OUTPUT);
     pinMode(RX, INPUT);
     data = (char*)malloc(INPUT_BUFFER_SIZE); //buffer large enough to hold any data for any command.
+    data[0] = 0x01;
+    data[1] = 0xf4;
+    data[2] = 0x01;
+    data[3] = 0xf4;
+    oi_full();
+    drive_direct(data);
+    
 }
 
 void loop()
@@ -57,11 +64,7 @@ void command_lookup()
     if(Serial.available() > 0)
     {
         command = Serial.read();
-        i = Serial.readBytesUntil(TERMINATOR, data, SONG_DATA_SIZE);
-       /* while(Serial.available() > 0)
-        {
-            data[i] = Serial.read();
-        }*/
+        i = Serial.readBytesUntil(TERMINATOR, data, INPUT_BUFFER_SIZE);
         
         switch(command)
         {
@@ -73,34 +76,34 @@ void command_lookup()
                 break;
             case USEDEMO:
                 if(i > 0)
-                    data[0] = Serial.read();
+                    demo(data[0]);
                 #ifdef DEBUG
-                else 
+                else
                 {
                     Serial.println("No demo selected!");
                     break;
                 }
                 #endif
-                demo(data[0]); 
                 break;
             case DRIVE_DIRECT:
-                if( i == 4) 
+                if( i == 4)
                     drive_direct(data);
-                
+
                 #ifdef DEBUG
                 else Serial.println("Not enough data sent");
                 #endif
                 break;
-            case DRIVE:                 
-                if( i == 4) 
+            case DRIVE:
+                if( i == 4)
                     drive(data);
-                
+
                 #ifdef DEBUG
                 else Serial.println("Not enough data sent");
                 #endif
                 break;
             case WHEELSTOP:
-                for(i = 0; i < DRIVE_DATA_SIZE; i++) data[i] = 0;
+                for(i = 0; i < DRIVE_DATA_SIZE; i++)
+                    data[i] = 0;
                 drive(data);
                 #ifdef DEBUG
                 Serial.println("Stopping all wheel motion");
@@ -113,4 +116,3 @@ void command_lookup()
         }
     }
 }
-
