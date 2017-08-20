@@ -1,6 +1,8 @@
 #include "create.h"
 #include <string.h>
 
+#define     INPUT_BUFFER_SIZE       515
+
 char found = 0;
 unsigned int i; //loop var
 char* data;
@@ -14,7 +16,7 @@ void setup()
 
     pinMode(TX, OUTPUT);
     pinMode(RX, INPUT);
-    data = (char*)malloc(SONG_DATA_SIZE); //buffer large enough to hold any data for any command.
+    data = (char*)malloc(INPUT_BUFFER_SIZE); //buffer large enough to hold any data for any command.
 }
 
 void loop()
