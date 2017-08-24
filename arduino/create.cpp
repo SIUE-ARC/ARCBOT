@@ -87,3 +87,24 @@ void drive_direct(char* data)
     create_link.write(DRIVEDOP);
     create_link.write(data, DRIVE_DIRECT_DATA_SIZE);
 }
+
+/*
+  This command causes Create to wait for the specified time.
+  During this time, Create’s state does not change, nor does
+  it react to any inputs, serial or otherwise.
+*/
+void wait_time(char data)
+{
+  #ifdef DEBUG
+  Serial.print("ARCBOT will wait for: ");
+  Serial.println(data);
+  #endif
+  create_link.write(WAITTIMEOP);
+  create_link.write(data);
+}
+
+
+void wait_distance(char* data)
+{
+  
+}
