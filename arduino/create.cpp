@@ -50,6 +50,7 @@ void demo(char data)
     #endif
 }
 
+
 void drive(char* data)
 {
     #ifdef DEBUG
@@ -104,7 +105,56 @@ void wait_time(char data)
 }
 
 
+/*
+    This command causes iRobot Create to wait until it has
+    traveled the specified distance in mm. When Create travels
+    forward, the distance is incremented. When Create travels
+    backward, the distance is decremented. If the wheels
+    are passively rotated in either direction, the distance is
+    incremented. Until Create travels the specified distance,
+    its state does not change, nor does it react to any inputs,
+    serial or otherwise.
+*/
 void wait_distance(char* data)
 {
-  
+  #ifdef DEBUG
+  Serial.println("ARCBOT is waiting to travel a certain distance");
+  #endif
+
+  create_link.write(WAITDISTOP);
+  create_link.write(data,WAIT_DISTANCE_DATA_SIZE);
+}
+
+/*
+    This command causes Create to wait until it has rotated
+    through specified angle in degrees. When Create turns
+    counterclockwise, the angle is incremented. When Create
+    turns clockwise, the angle is decremented. Until Create
+    turns through the specified angle, its state does not change,
+    nor does it react to any inputs, serial or otherwise.
+*/
+void wait_angle(char* data)
+{
+  #ifdef DEBUG
+  Serial.println("ARCBOT is waiting to rotate a certain angle")
+  #endif
+
+  create_link.write(WAITANGLOP);
+  create_link.write(data,WAIT_ANGLE_DATA_SIZE);
+}
+
+/*
+    This command causes Create to wait until it detects the
+    specified event. Until the specified event is detected,
+    Create’s state does not change, nor does it react to any
+    inputs, serial or otherwise.
+*/
+void wait_event(char data)
+{
+  #ifdef DEBUG
+  Serial.println("ARCBOT is waiting for a specific event to happen")
+  #endif
+
+  create_link.write(WAITEVENTOP);
+  create_link.write(data);
 }
