@@ -12,6 +12,11 @@ void create_init()
     #endif
 }
 
+/*
+    This command puts the OI into Safe mode, enabling user
+    control of Create. It turns off all LEDs. The OI can be in
+    Passive, Safe, or Full mode to accept this command.
+*/
 void oi_safe()
 {
     //create_link.write(STARTOP);
@@ -21,6 +26,14 @@ void oi_safe()
     #endif
 }
 
+/*
+    This command gives you complete control over Create
+    by putting the OI into Full mode, and turning off the cliff,
+    wheel-drop and internal charger safety features. That is, in
+    Full mode, Create executes any command that you send
+    it, even if the internal charger is plugged in, or the robot
+    senses a cliff or wheel drop.
+*/
 void oi_full()
 {
     //create_link.write(STARTOP);
@@ -44,13 +57,15 @@ void demo(char data)
     else
     {
         create_link.write(data);
+        #ifdef DEBUG
+        Serial.println("Playing a Demo");
+        #endif
     }
-    #ifdef DEBUG
-    Serial.println("Playing a Demo");
-    #endif
 }
 
-
+/*
+    Documentiation on this command (page 9): https://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf
+*/
 void drive(char* data)
 {
     #ifdef DEBUG
