@@ -136,7 +136,7 @@ void wait_distance(char* data)
 void wait_angle(char* data)
 {
   #ifdef DEBUG
-  Serial.println("ARCBOT is waiting to rotate a certain angle")
+  Serial.println("ARCBOT is waiting to rotate a certain angle");
   #endif
 
   create_link.write(WAITANGLOP);
@@ -152,7 +152,7 @@ void wait_angle(char* data)
 void wait_event(char data)
 {
   #ifdef DEBUG
-  Serial.println("ARCBOT is waiting for a specific event to happen")
+  Serial.println("ARCBOT is waiting for a specific event to happen");
   #endif
 
   create_link.write(WAITEVENTOP);
