@@ -109,6 +109,210 @@ void drive_direct(char* data)
 }
 
 /*
+    This command changes the state of one of the lEDs on 
+    the create. The Advance and Play LEDs can be on or off
+    and the Power LED can change color and intensity.
+ */
+void leds(char* data)
+{
+    #ifdef DEBUG
+    if(data[0] == 0)
+        Serial.println("Turning off Advance and Play LEDs");
+    else if(data[0] == 2)
+        Serial.println("Turning on only the Play LED");
+    else if(data[0] == 8)
+        Serial.println("Turning on only the Advance LED");
+    else if(data[0] == 10)
+        Serial.println("Turning on Adance and Play LEDs");
+    else
+        Serial.println("Invalid LED configuration specified");
+
+    Serial.print("Color: ");
+    Serial.print(data[1]);
+    Serial.print(" Intensity: ");
+    Serial.println(data[2]);
+    #endif
+    
+    create_link.write(LEDSOP);
+    create_link.write(&data[0], LEDS_DATA_SIZE);
+}
+
+/*
+    This command stores a user made song in the create's memory
+    so that it can be recalled and played at a later time. 
+ */
+void song(char* data)
+{
+    #ifdef DEBUG
+    char index;
+    Serial.print("Song will be stored as song number: ");
+    Serial.println(data[0]);
+    Serial.print("Number of notes: ");
+    Serial.println(data[1]);
+    Serial.print("List of notes: ");
+
+    for(index = 0; index < data[1]; index++)
+    {
+        Serial.print(data[2+index], HEX);
+        Serial.print(" ");
+    }
+    Serial.println();
+    #endif 
+
+    create_link.write(SONGOP);
+    create_link.write(&data[0], SONG_DATA_SIZE);
+}
+
+/*
+    Plays the requested song from the create's stored
+    bank of songs.
+ */
+void play_song(char number)
+{
+    #ifdef DEBUG
+    if(number <= 15 && number >= 0)
+    {
+        Serial.print("Selected song number: ");
+        Serial.println(number);
+    }
+    else
+        Serial.println("Invalid song number. Choose 0-15");
+    #endif
+
+    create_link.write(PLAYSONGOP);
+    create_link.write(number);
+}
+
+void query_sensor(char* data)
+{
+    char index;
+    char sesnor_data[50];
+    char rcv_bytes = 0;
+    
+    #ifdef DEBUG
+    Serial.print("Number of packets: ");
+    Serial.println(data[0]);
+    Serial.print("Packet IDs: ");
+    #endif
+    
+    for(index = 0; index < data[0]; index++)
+    {
+        #ifdef DEBUG
+        Serial.print(data[1 + index]);
+        Serial.print(" ");
+        #endif
+        switch(data[1 + index])
+        {
+            case BUMPERID:
+                rcv_bytes += 1;
+                break;
+            case WALLID:
+                rcv_bytes += 1;
+                break;
+            case LCLIFFID:
+                rcv_bytes += 1;
+                break;
+            case FLCLIFFID:
+                rcv_bytes += 1;
+                break;
+            case FRCLIFFID:
+                rcv_bytes += 1;
+                break;
+            case RCLIFFID:
+                rcv_bytes += 1;
+                break;
+            case VWALLID:
+                rcv_bytes += 1;
+                break;
+            case OVERCURRENTID:
+                rcv_bytes += 1;
+                break;
+            case IRSENSID:
+                rcv_bytes += 1;
+                break;
+            case BUTTONSID:
+                rcv_bytes += 1;
+                break;
+            case DISTANCEID:
+                rcv_bytes += 2;
+                break;
+            case ANGLEID:
+                rcv_bytes += 2;
+                break;
+            case BATTEMPID:
+                rcv_bytes += 1;
+                break;
+            case BATVOLTSID:
+                rcv_bytes += 2;
+                break;
+            case BATCHARGEID:
+                rcv_bytes += 2;
+                break;
+            case BATCAPID:
+                rcv_bytes += 2;
+                break;
+            case BATCURRENTID:
+                rcv_bytes += 2;
+                break;
+            case WALLSIGID:
+                rcv_bytes += 2;
+                break;
+            case LCLIFFSIGID:
+                rcv_bytes += 2;
+                break;
+            case FLCLIFFISIGID:
+                rcv_bytes += 2;
+                break;
+            case FRCLIFFSIGID:
+                rcv_bytes += 2;
+                break;
+            case RCLIFFSIGID:
+                rcv_bytes += 2;
+                break;
+            case CHARGESRCID:
+                rcv_bytes += 1;
+                break;
+            case VELREQUESTID:
+                rcv_bytes += 2;
+                break;
+            case RADREQUESTID:
+                rcv_bytes += 2;
+                break;
+            case RVELREQUESTID:
+                rcv_bytes += 2;
+                break;
+            case LVELREQUESTID:
+                rcv_bytes += 2;
+                break;
+            #ifdef DEBUG
+            default:
+                Serial.print("Encountered unknown sensor ID: ");
+                Serial.println(data[1 + index);
+            #endif
+        }
+    }
+    
+    #ifdef DEBUG
+    Serial.println();
+    Serial.println("Data received: ")
+    #endif
+    
+    create_link.write(QUERYOP);
+    create_link.write(data[0]);
+    
+    for(index = 0; index < data[0]; index++)
+    {
+        create_link.write(data[1 + index]);
+    }
+    
+    #ifdef DEGBUG
+    create_link.readBytes(sensor_data, data[0]);
+    else
+    
+    #endif
+}
+
+/*
   This command causes Create to wait for the specified time.
   During this time, Create’s state does not change, nor does
   it react to any inputs, serial or otherwise.
@@ -159,7 +363,7 @@ void wait_angle(char* data)
   #endif
 
   create_link.write(WAITANGLOP);
-  create_link.write(data,WAIT_ANGLE_DATA_SIZE);
+  create_link.write(data, WAIT_ANGLE_DATA_SIZE);
 }
 
 /*

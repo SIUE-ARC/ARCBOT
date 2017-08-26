@@ -4,8 +4,8 @@
 #define     DRIVE_DATA_SIZE             4
 #define     DRIVE_DIRECT_DATA_SIZE      4
 #define     LEDS_DATA_SIZE              3
-#define     SONG_DATA_SIZE              63
-#define     QUERY_DATA_SIZE             63
+#define     SONG_DATA_SIZE              62
+#define     QUERY_DATA_SIZE             62
 #define     WAIT_DISTANCE_DATA_SIZE     2
 #define     WAIT_ANGLE_DATA_SIZE        2
 #define     TX                          2
@@ -20,9 +20,9 @@ void demo(char data);
 void drive(char* data);
 void drive_direct(char* data);
 void leds(char* data);
-void song(char length, char number, char* notes);
+void song(char* data);
 void play_song(char number);
-void query_sensor(char length, char* ids);
+void query_sensor(char* data);
 void wait_time(char data);
 void wait_distance(char* data);
 void wait_angle(char* data);
