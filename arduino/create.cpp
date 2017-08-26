@@ -36,7 +36,6 @@ void oi_safe()
 */
 void oi_full()
 {
-    //create_link.write(STARTOP);
     create_link.write(FULLOP);
     #ifdef DEBUG
     Serial.print("Create put in Full mode");
@@ -64,6 +63,7 @@ void demo(char data)
 }
 
 /*
+    Allows create to move in an arc or straight line.
     Documentiation on this command (page 9): https://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf
 */
 void drive(char* data)
@@ -87,6 +87,10 @@ void drive(char* data)
     create_link.write(data, DRIVE_DATA_SIZE);
 }
 
+/*
+    Allows independent control of each create wheel.
+    Documentiation on this command (page 9): https://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf
+*/
 void drive_direct(char* data)
 {
     #ifdef DEBUG
