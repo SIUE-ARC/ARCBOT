@@ -287,14 +287,14 @@ void query_sensor(char* data)
             #ifdef DEBUG
             default:
                 Serial.print("Encountered unknown sensor ID: ");
-                Serial.println(data[1 + index);
+                Serial.println(data[1 + index]);
             #endif
         }
     }
     
     #ifdef DEBUG
     Serial.println();
-    Serial.println("Data received: ")
+    Serial.println("Data received: ");
     #endif
     
     create_link.write(QUERYOP);

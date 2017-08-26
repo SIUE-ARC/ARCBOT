@@ -17,12 +17,6 @@ void setup()
     pinMode(TX, OUTPUT);
     pinMode(RX, INPUT);
     data = (char*)malloc(INPUT_BUFFER_SIZE); //buffer large enough to hold any data for any command.
-    data[0] = 0x01;
-    data[1] = 0xf4;
-    data[2] = 0x01;
-    data[3] = 0xf4;
-    oi_full();
-    drive_direct(data);
     
 }
 
@@ -87,10 +81,11 @@ void command_lookup()
                 break;
             case DRIVE_DIRECT:
                 if( i == 4)
-                    drive_direct(data);
+                    drive_direct(data[0]);
 
                 #ifdef DEBUG
-                else Serial.println("Not enough data sent");
+                else 
+                    Serial.println("Not enough data sent");
                 #endif
                 break;
             case DRIVE:
@@ -113,6 +108,7 @@ void command_lookup()
                 #ifdef DEBUG
                 Serial.println("Invalid command");
                 #endif
+                break;
         }
     }
 }
