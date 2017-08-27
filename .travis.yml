@@ -1,8 +1,10 @@
-language: python
+language:      python
 python:
   - "3.6"
-install: "pip install -r tests/requirements.txt"
-script: pytest
+install:       "pip install -r tests/requirements.txt"
+script:        pytest
 branches:
   only:
     - master
+notifications:
+  slack:       siuearc:BzKrahLmKXB56FTElgiFGky8
