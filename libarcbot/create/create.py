@@ -16,43 +16,39 @@ class Create(object):
         super(Create, self).__init__()
         self.__serial_manager = serial_manager
 
-    def is_valid_velocity(self, velocity):
-        return velocity < self.__MAX_VELOCITY_IN_METERS_PER_SECOND and velocity > -self.__MAX_VELOCITY_IN_METERS_PER_SECOND
-
-    def is_valid_radius(self, radius):
-        return radius < self.__MAX_RADIUS_IN_METERS and radius > -self.__MAX_RADIUS_IN_METERS
-
-    def drive_straight_at_velocity(self, velocity):
-        # given a valid velocity
-        if not self.is_valid_velocity(velocity):
-            return -1
-        # and a command
+    def drive(self, speed, radius):
+        # given a command
         command = self.__command_constants.CREATE_DRIVE_COMMAND
-        # send the command
-        return self.__serial_manager.send_command(command + velocity + self.__STRAIGHT_RADIUS)
+        # and the speed with radius
+        command = command + str(speed) + str(radius)
+        # send the command and get the response
+        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
 
-    def turn_in_place(self, velocity):
-        # given a valid velocity
-        if not self.is_valid_velocity(velocity):
-            return -1
-        # and a command
-        command = self.__command_constants.CREATE_DRIVE_COMMAND
-        # and a direction
-        if velocity < 0:
-            direction = self.__COUNTER_CLOCKWISE_RADIUS
+    def drive_direct(self, lspeed, rspeed):
+        # given a command
+        command = self.__command_constants.CREATE_DRIVE_DIRECT_COMMAND
+        # and the left and right wheel speeds
+        command = command + str(lspeed) + str(rspeed)
+        # send the command and get the response
+        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+
+    def set_moode(self, mode):
+        if mode == "safe":
+            command = self.__command_constants.CREATE_SAFE_MODE_COMMAND
+        elif mode == "full":
+            command = self.__command_constants.CREATE_FULL_MODE_COMMAND
         else:
-            direction = self.__CLOCKWISE_RADIUS
-        # send the command
-        return self.__serial_manager.send_command(command + velocity + direction)
+            raise TypeError
+        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
 
-    def turn_by_radius_at_velocity(self, velocity, radius):
-        # given a valid velocity
-        if not self.is_valid_velocity(velocity):
-            return -1
-        # and a valid radius
-        if not self.is_valid_radius(radius):
-            return -1
-        # and a command
-        command = self.__command_constants.CREATE_DRIVE_COMMAND
-        # send the command
-        return self.__serial_manager.send_command(command + velocity + radius)
+    def set_demo(self, demo):
+        command = self.__command_constants.CREATE_DEMO_MODE_COMMAND
+        if demo == "spot":
+            command = command + str(self.__command_constants.CREATE_SPOT_COVER_DEMO_MODE)
+        elif demo == "cover":
+            command = command + str(self.__command_constants.CREATE_COVER_DEMO_MODE)
+        elif demo == "dock":
+            command = command + str(self.__command_constants.CREATE_COVER_DOCK_DEMO_MODE)
+        else:
+            raise TypeError
+        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
