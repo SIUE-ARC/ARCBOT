@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from libarcbot.utils.constant import constant
 
+
 class __CommandConstants(object):
     """Create Command Constants"""
     @constant
@@ -8,40 +9,26 @@ class __CommandConstants(object):
         return "\\r"
 
     @constant
-    def CREATE_SAFE_MODE_COMMAND():
-        return "A"
-
-    @constant
-    def CREATE_FULL_MODE_COMMAND():
-        return "B"
+    def CREATE_MODE_COMMANDS():
+        return {
+            'safe': 'A',
+            'full': 'B'
+        }
 
     @constant
     def CREATE_DEMO_MODE_COMMAND():
         return "C"
 
     @constant
-    def CREATE_COVER_DEMO_MODE():
-        return 0
-
-    @constant
-    def CREATE_COVER_DOCK_DEMO_MODE():
-        return 1
-
-    @constant
-    def CREATE_SPOT_COVER_DEMO_MODE():
-        return 2
-
-    @constant
-    def CREATE_MOUSE_DEMO_MODE():
-        return 3
-
-    @constant
-    def CREATE_DRIVE_FIGURE_EIGHT_DEMO_MODE():
-        return 4
-
-    @constant
-    def CREATE_WIMP_DEMO_MODE():
-        return 5
+    def CREATE_DEMO_IDS():
+        return {
+            'cover': 0,
+            'dock': 1,
+            'spot': 2,
+            'mouse': 3,
+            'eight': 4,
+            'wimp': 5
+        }
 
     @constant
     def CREATE_HOME_DEMO_MODE():
@@ -94,3 +81,55 @@ class __CommandConstants(object):
     @constant
     def CREATE_BATTERY_VOLTS():
         return "O"
+
+    @constant
+    def CREATE_BUMPER_COMMAND():
+        return "P"
+
+    # TODO: Get the actual IDS
+    @constant
+    def CREATE_BUMPER_IDS:
+        return {
+            'left': 0,
+            'right': 1
+        }
+
+    @constant
+    def CREATE_DROP_SENSORS_COMMAND():
+        return "Q"
+
+    # TODO: Get the actual ids
+    @constant
+    def CREATE_DROP_SENSOR_IDS():
+        return {
+            'left': 0,
+            'center': 1,
+            'right': 2
+        }
+
+    @constant
+    def CREATE_WHEEL_DROP_COMMAND():
+        return "R"
+
+    # TODO: Get the actual ids
+    @constant
+    def CREATE_WHEEL_IDS():
+        return {
+            'left': 0,
+            'center': 1,
+            'right': 2
+        }
+
+    @constant
+    def CREATE_CLIFF_COMAMND():
+        return "S"
+
+    # TODO: Get the actual IDS
+    @constant
+    def CREATE_CLIFF_IDS():
+        return {
+            'left': 0,
+            'front left': 1
+            'right': 2,
+            'front right': 3
+        }
