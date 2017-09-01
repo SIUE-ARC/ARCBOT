@@ -107,20 +107,20 @@ void command_lookup()
                     if(data[1]==0)
                     {
                         wait_time(data[2]);
-                    }                   
+                    }
                     else if(data[1]==1)
                     {
-                        wait_time(&data[2]);
-                    }          
+                        wait_distance(&data[2]);
+                    }
                     else if(data[1]==2)
                     {
-                        wait_time(&data[2]);
+                        wait_angle(&data[2]);
                     }
                     else if(data[1]==3)
                     {
-                        wait_time(&data[2]);
+                        wait_event(&data[2]);
                     }
-                    
+
                 }
                 #ifdef DEBUG
                 else

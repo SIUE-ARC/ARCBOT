@@ -3,7 +3,7 @@
 Servo s0, s1;
 
 /*
-    Sets the appropriate pin modes for all sensors and 
+    Sets the appropriate pin modes for all sensors and
     initializes the servo objects.
  */
 void init_hardware()
@@ -29,7 +29,7 @@ void servo(char* data)
 {
     short* microseconds = (short*)(void*)&data[1];
     #ifdef DEBUG
-    if(data[0] > 1 || data[0] < 0) 
+    if(data[0] > 1 || data[0] < 0)
     {
         Serial.println("Servo number must be between 0-1");
         return;
@@ -49,7 +49,7 @@ void servo(char* data)
 
 void ir_sensor(char data)
 {
-    
+
 }
 
 void ultrasonic(char data)
@@ -78,7 +78,7 @@ void ultrasonic(char data)
             #endif
             break;
     }
-    
+
     #ifdef DEBUG
     Serial.print("Pinging on Ultrasonic ");
     Serial.print(data);
@@ -98,4 +98,3 @@ void ultrasonic(char data)
     Serial.write((char*)(void*)&cm, 4);
     #endif
 }
-
