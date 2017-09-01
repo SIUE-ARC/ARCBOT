@@ -1,5 +1,6 @@
 #include "create.h"
 #include <string.h>
+#include "ultrasound.h"
 
 #define     INPUT_BUFFER_SIZE       64
 
@@ -17,7 +18,7 @@ void setup()
     pinMode(TX, OUTPUT);
     pinMode(RX, INPUT);
     data = (char*)malloc(INPUT_BUFFER_SIZE); //buffer large enough to hold any data for any command.
-    
+
 }
 
 void loop()
@@ -59,7 +60,7 @@ void command_lookup()
     {
         command = Serial.read();
         i = Serial.readBytesUntil(TERMINATOR, data, INPUT_BUFFER_SIZE);
-        
+
         switch(command)
         {
             case MODESAFE:
@@ -84,7 +85,7 @@ void command_lookup()
                     drive_direct(data[0]);
 
                 #ifdef DEBUG
-                else 
+                else
                     Serial.println("Not enough data sent");
                 #endif
                 break;
