@@ -1,4 +1,5 @@
 #include <SoftwareSerial.h>
+#include <arduino.h>
 #include "encodings.h"
 
 #define     DRIVE_DATA_SIZE             4
@@ -27,6 +28,3 @@ void wait_time(char data);
 void wait_distance(char* data);
 void wait_angle(char* data);
 void wait_event(char data);
-int angle();
-char battery_temp();
-unsigned int battery_volts();

@@ -1,8 +1,11 @@
 #include "create.h"
-#include <arduino.h>
 
 SoftwareSerial create_link(RX, TX);
 
+/*
+    Starts the software serial link with the Create, and sends
+    the start opcode which takes the create out of passive mode.
+ */
 void create_init()
 {
     create_link.begin(BAUD);
@@ -183,6 +186,10 @@ void play_song(char number)
     create_link.write(number);
 }
 
+/*
+    Provided a list of sensor IDs, sends a serial packet containing the readings
+    from all of the senors requested.
+ */
 void query_sensor(char* data)
 {
     char index;
@@ -305,10 +312,17 @@ void query_sensor(char* data)
         create_link.write(data[1 + index]);
     }
     
-    #ifdef DEGBUG
-    create_link.readBytes(sensor_data, data[0]);
-    else
+    create_link.readBytes(sensor_data, rcv_bytes);
     
+    #ifdef DEGBUG
+    Serial.print("Data returned: ");
+    for(index = 0; index < rcv_bytes; index++);
+        Serial.print(sensor_data[i]);
+
+    Serial.println();
+    else
+    for(index = 0; index < rcv_bytes; index++);
+        Serial.write(sensor_data[i]);
     #endif
 }
 
