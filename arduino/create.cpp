@@ -193,7 +193,7 @@ void play_song(char number)
 void query_sensor(char* data)
 {
     char index;
-    char sesnor_data[50];
+    char sensor_data[50];
     char rcv_bytes = 0;
     
     #ifdef DEBUG

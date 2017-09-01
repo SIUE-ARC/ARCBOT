@@ -44,7 +44,7 @@ void servo(char* data)
     }
     #endif
 
-    (data[0] == 0) ? s0.writeMicroseconds(microseconds):s1.writeMicroseconds(microseconds);
+    (data[0] == 0) ? s0.writeMicroseconds(*microseconds):s1.writeMicroseconds(*microseconds);
 }
 
 void ir_sensor(char data)
@@ -61,16 +61,16 @@ void ultrasonic(char data)
     switch(data)
     {
         case 0:
-            pin = ULTRASOUN0_PIN;
+            pin = ULTRASOUND0_PIN;
             break;
         case 1:
-            pin = ULTRASOUN1_PIN;
+            pin = ULTRASOUND1_PIN;
             break;
         case 2:
-            pin = ULTRASOUN2_PIN;
+            pin = ULTRASOUND2_PIN;
             break;
         case 3:
-            pin = ULTRASOUN3_PIN;
+            pin = ULTRASOUND3_PIN;
             break;
         default:
             #ifdef DEBUG
@@ -95,9 +95,7 @@ void ultrasonic(char data)
     #ifdef DEBUG
     Serial.println(cm);
     #else
-    Serial.write(cm);
+    Serial.write((char*)(void*)&cm, 4);
     #endif
-
-    return cm;
 }
 

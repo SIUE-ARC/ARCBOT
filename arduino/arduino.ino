@@ -1,6 +1,5 @@
 #include "create.h"
 #include <string.h>
-#include "ultrasound.h"
 
 #define     INPUT_BUFFER_SIZE       64
 
@@ -74,15 +73,12 @@ void command_lookup()
                     demo(data[0]);
                 #ifdef DEBUG
                 else
-                {
                     Serial.println("No demo selected!");
-                    break;
-                }
                 #endif
                 break;
             case DRIVE_DIRECT:
                 if( i == 4)
-                    drive_direct(data[0]);
+                    drive_direct(data);
 
                 #ifdef DEBUG
                 else
@@ -104,6 +100,44 @@ void command_lookup()
                 #ifdef DEBUG
                 Serial.println("Stopping all wheel motion");
                 #endif
+                break;
+            case WAIT:
+                if(i >= 1)
+                {
+                    if(data[1]==0)
+                    {
+                        wait_time(data[2]);
+                    }                   
+                    else if(data[1]==1)
+                    {
+                        wait_time(&data[2]);
+                    }          
+                    else if(data[1]==2)
+                    {
+                        wait_time(&data[2]);
+                    }
+                    else if(data[1]==3)
+                    {
+                        wait_time(&data[2]);
+                    }
+                    
+                }
+                #ifdef DEBUG
+                else
+                    Serial.println("Which wait command?");
+                #endif
+                break;
+            case QSENSOR:
+                break;
+            case CSONG:
+                break;
+            case PSONG:
+                break;
+            case SERVO:
+                break;
+            case IRSENS:
+                break;
+            case ULTRASOUND:
                 break;
             default:
                 #ifdef DEBUG

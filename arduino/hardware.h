@@ -3,9 +3,9 @@
 #include <Servo.h>
 
 #define     ULTRASOUND0_PIN     4
-#define     ULTRASOUND0_PIN     7
-#define     ULTRASOUND0_PIN     8
-#define     ULTRASOUND0_PIN     12
+#define     ULTRASOUND1_PIN     7
+#define     ULTRASOUND2_PIN     8
+#define     ULTRASOUND3_PIN     12
 #define     IR0_PIN             A0
 #define     IR1_PIN             A1
 #define     IR2_PIN             A2

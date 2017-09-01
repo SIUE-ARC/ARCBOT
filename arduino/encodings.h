@@ -79,10 +79,15 @@
 /*  Arduino Commands */
 const char     DRIVE           =    'D';
 const char     DRIVE_DIRECT    =    'r';
-const char     WHEELLEFT       =    'L';
-const char     WHEELRIGHT      =    'R';
 const char     MODESAFE        =    'S';
 const char     MODEFULL        =    'F';
 const char     WHEELSTOP       =    's';
 const char     USEDEMO         =    'd';
+const char     WAIT            =    'w';
+const char     QSENSOR         =    'q';
+const char     CSONG           =    'g';
+const char     PSONG           =    'G';
+const char     SERVO           =    'x';
+const char     ULTRASOUND      =    'u';
+const char     IRSENS          =    'i';
 const char     TERMINATOR      =    '\r';
