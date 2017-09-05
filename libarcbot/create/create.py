@@ -164,7 +164,8 @@ class Create(object):
         # and the distance
         command = command + str(distance)
         # send the command
-        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        self.__serial_manager.send_command(
+            command + self.__command_constants.SERIAL_TERMINATOR)
 
     def wait_angle(self, angle):
         # given the command
@@ -172,7 +173,8 @@ class Create(object):
         # and the angle
         command = command + str(angle)
         # send the command
-        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        self.__serial_manager.send_command(
+            command + self.__command_constants.SERIAL_TERMINATOR)
 
     def wait_event(self, event):
         # given a command
@@ -185,4 +187,5 @@ class Create(object):
         # add the event
         command = command + str(ids[event])
         # send the command
-        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        self.__serial_manager.send_command(
+            command + self.__command_constants.SERIAL_TERMINATOR)

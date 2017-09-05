@@ -33,28 +33,28 @@ class __CommandConstants(object):
     @constant
     def CREATE_EVENT_IDS():
         return {
-        "Wheel Drop": 1,
-        "Front Wheel Drop": 2,
-        "Left Wheel Drop": 3,
-        "Right Wheel Drop": 4,
-        "Bump": 5,
-        "Left Bump": 6,
-        "Right Bump": 7,
-        "Virtual Wall": 8,
-        "Wall": 9,
-        "Cliff": 10,
-        "Left Cliff": 11,
-        "Front Left Cliff": 12,
-        "Front Right Cliff" : 13
-        "Right Cliff": 14,
-        "Home Base": 15,
-        "Advance Button": 16,
-        "Play Button": 17,
-        "Digial Input 0": 18,
-        "Digital Input 1": 19,
-        "Digital Input 2": 20,
-        "Digtial Input 3": 21,
-        "Passive": 22
+            "Wheel Drop": 1,
+            "Front Wheel Drop": 2,
+            "Left Wheel Drop": 3,
+            "Right Wheel Drop": 4,
+            "Bump": 5,
+            "Left Bump": 6,
+            "Right Bump": 7,
+            "Virtual Wall": 8,
+            "Wall": 9,
+            "Cliff": 10,
+            "Left Cliff": 11,
+            "Front Left Cliff": 12,
+            "Front Right Cliff": 13
+            "Right Cliff": 14,
+            "Home Base": 15,
+            "Advance Button": 16,
+            "Play Button": 17,
+            "Digial Input 0": 18,
+            "Digital Input 1": 19,
+            "Digital Input 2": 20,
+            "Digtial Input 3": 21,
+            "Passive": 22
         }
 
     @constant
@@ -148,6 +148,14 @@ class __CommandConstants(object):
         }
 
     @constant
+    def SERVO_ZERO():
+        return 1000
+
+    @constant
+    def SERVO_GAIN():
+        return 5.555
+
+    @constant
     def CREATE_CLIFF_COMAMND():
         return "S"
 
@@ -160,3 +168,11 @@ class __CommandConstants(object):
             'right': 2,
             'front right': 3
         }
+
+    @constant
+    def IR_GET_COMMAND():
+        return "T"
+
+    @constant
+    def US_GET_COMMAND():
+        return "U"
