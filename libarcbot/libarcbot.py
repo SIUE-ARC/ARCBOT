@@ -225,3 +225,183 @@ class ArcBot(object):
     """
     def create_wait_wheel_drop(self):
         self.__create.wait_event("Wheel Drop")
+
+    """
+    Tell the create to continue at its current velocity until the front wheel is
+    dropped
+
+    :returns: void
+    """
+    def create_wait_front_wheel_drop(self):
+        self.__create.wait_event("Front Wheel Drop")
+
+    """
+    Tell the create to continue at its current velocity until the left wheel is
+    dropped
+
+    :returns: void
+    """
+    def create_wait_left_wheel_drop(self):
+        self.__create.wait_event("Left Wheel Drop")
+
+    """
+    Tell the create to continue at its current velocity until the right wheel is
+    dropped
+
+    :returns: void
+    """
+    def create_wait_right_wheel_drop(self):
+        self.__create.wait_event("Right Wheel Drop")
+
+    """
+    Tell the create to continue at its current velocity until the Bump sensor is
+    tripped
+
+    :returns: void
+    """
+    def create_wait_bump(self):
+        self.__create.wait_event("Bump")
+
+    """
+    Tell the create to continue at its current velocity until the left bumper is
+    triggered
+
+    :returns: void
+    """
+    def create_wait_left_bumper(self):
+        self.__create.wait_event("Left Bump")
+
+    """
+    Tell the create to continue at its current velocity until the right bumper is
+    triggered
+
+    :returns: void
+    """
+    def create_wait_right_bumper(self):
+        self.__create.wait_event("Right Bump)
+
+    """
+    Tell the create to continue at its current velocity until the create hits a
+    virtual wall
+
+    :returns: void
+    """
+    def create_wait_virtual_wall(self):
+        self.__create.wait_event("Virtual Wall")
+
+    """
+    Tell the create to continue at its current velocity until the cliff sensor
+    is triggered
+
+    :returns: void
+    """
+    def create_wait_cliff(self):
+        self.__create.wait_event("Cliff")
+
+    """
+    Tell the create to continue at its current velocity until the left cliff is
+    triggered
+
+    :returns: void
+    """
+    def create_wait_left_cliff(self):
+        self.__create.wait_event("Left Cliff")
+
+    """
+    Tell the create to continue at its current velocity until the front left
+    cliff is triggered
+
+    :returns: void
+    """
+    def create_wait_front_left_cliff(self):
+        self.__create.wait_event("Front Left Cliff")
+
+    """
+    Tell the create to continue at its current velocity until the front right
+    cliff is triggered
+
+    :returns: void
+    """
+    def create_wait_front_right_cliff(self):
+        self.__create.wait_event("Front Right Cliff")
+
+    """
+    Tell the create to continue at its current velocity until the right cliff
+    is triggered
+
+    :returns: void
+    """
+    def create_wait_right_cliff(self):
+        self.__create.wait_event("Right Cliff")
+
+    """
+    Tell the create to continue at its current velocity until the create is in
+    a home base
+
+    :returns: void
+    """
+    def create_wait_home_base(self):
+        self.__create.wait_event("Home Base")
+
+    """
+    Tell the create to continue at its current velocity until the advance Button
+    is pressed
+
+    :returns: void
+    """
+    def create_wait_advance_button(self):
+        self.__create.wait_event("Advance Button")
+
+    """
+    Tell the create to continue at its current velocity until the Play Button is
+    pressed
+
+    :returns: void
+    """
+    def create_wait_play_button(self):
+        self.__create.wait_event("Play Button")
+
+    """
+    Tell the create to continue at its current velocity until Digital Input 0 is
+    high
+
+    :returns: void
+    """
+    def create_wait_digital_zero(self):
+        self.__create.wait_event("Digital Input 0")
+
+    """
+    Tell the create to continue at its current velocity until Digital Input 1 is
+    high
+
+    :returns: void
+    """
+    def create_wait_digital_one(self):
+        self.__create.wait_event("Digital Input 1")
+
+    """
+    Tell the create to continue at its current velocity until Digital Input 2 is
+    high
+
+    :returns: void
+    """
+    def create_wait_digital_two(self):
+        self.__create.wait_event("Digital Input 2")
+
+    """
+    Tell the create to continue at its current velocity until Digital Input 3 is
+    high
+
+    :returns: void
+    """
+    def create_wait_digital_three(self):
+        self.__create.wait_event("Digital Input 3")
+
+    """
+    Tell the create to continue at its current velocity until the create is in
+    passive mode
+
+    :returns: void
+    """
+    def create_wait_passive_mode(self):
+        self.__create.wait_event("Passive")

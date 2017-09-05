@@ -173,3 +173,16 @@ class Create(object):
         command = command + str(angle)
         # send the command
         self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+
+    def wait_event(self, event):
+        # given a command
+        command = self.__command_constants.CREATE_WAIT_EVENT_COMMAND
+        # and a dictionary of event ids
+        ids = self.__command_constants.CREATE_EVENT_IDS
+        # check if the event is valid
+        if event not in ids:
+            raise TypeError
+        # add the event
+        command = command + str(ids[event])
+        # send the command
+        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
