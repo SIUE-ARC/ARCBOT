@@ -157,3 +157,19 @@ class Create(object):
         command = command + str(ids[cliff])
         # send the command, returning the value
         return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+
+    def wait_distance(self, distance):
+        # given a command
+        command = self.__command_constants.CREATE_WAIT_DISTANCE_COMMAND
+        # and the distance
+        command = command + str(distance)
+        # send the command
+        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+
+    def wait_angle(self, angle):
+        # given the command
+        command = self.__command_constants.CREATE_WAIT_ANGLE_COMMAND
+        # and the angle
+        command = command + str(angle)
+        # send the command
+        self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)

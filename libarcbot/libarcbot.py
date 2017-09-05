@@ -190,3 +190,38 @@ class ArcBot(object):
     """
     def get_create_front_right_cliff(self):
         return self.__create.get_cliff("front right")
+    """
+    Tell the create to continue at its current velocity until it has reached
+    the specified distance
+
+    :param distance: Distance for the create to travel in Meters
+    :returns: void
+    :raises TypeError: TypeError when invalid input is provided
+    """
+    def create_wait_distance(self, distance):
+        if -255 < distance < 255:
+            self.__create.wait_distance(distance)
+        else:
+            raise TypeError
+
+    """
+    Tell the create to continue at its current speed until it has reached the
+    specified angle
+
+    :param angle: Angle to turn to in Degrees
+    :returns: void
+    :raises TypeError: TypeError when invalid input is provided
+    """
+    def create_wait_angle(self, angle):
+        if -255 < angle < 255:
+            self.__create.wait_angle(angle)
+        else:
+            raise TypeError
+
+    """
+    Tell the create to continue at its current velocity until a wheel is dropped
+
+    :returns: void
+    """
+    def create_wait_wheel_drop(self):
+        self.__create.wait_event("Wheel Drop")
