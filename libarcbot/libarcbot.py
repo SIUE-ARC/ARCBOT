@@ -16,6 +16,8 @@ class ArcBot(object):
     __serial = None
     __create = None
     __servo = None
+    __ir = None
+    __ur = None
 
     def __init__(self):
         super(ArcBot, self).__init__()
@@ -23,6 +25,8 @@ class ArcBot(object):
         self.__serial = SerialManager.get_instance()
         self.__create = Create(self.__serial)
         self.__servo = Servo(self.__serial)
+        self.__ir = Infrared(self.__serial)
+        self.__us = UltraSonic(self.__serial)
 
     """
     Drive the Create given a speed and radius
@@ -466,7 +470,8 @@ class ArcBot(object):
     :returns: void
     :raises TypeError: TypeError when invalid input is provided
     """
-    def set_servo_zero_angle(self, angle, zero = None, gain = None):
+
+    def set_servo_zero_angle(self, angle, zero=None, gain=None):
         if -360 < angle < 360:
             self.__servo.set_angle(0, angle, zero, gain)
         else:
@@ -481,17 +486,37 @@ class ArcBot(object):
     :returns: void
     :raises TypeError: TypeError when invalid input is provided
     """
-    def set_servo_one_angle(self, angle, zero = None, gain = None):
+
+    def set_servo_one_angle(self, angle, zero=None, gain=None):
         if -360 < angle < 360:
             self.__servo.set_angle(1, angle, zero, gain)
         else:
             raise TypeError
 
     """
+    Toggle Servo 0 disable
+
+    :returns: void
+    """
+
+    def toggle_servo_zero_disable(self):
+        self.__servo.toggle_disable(0)
+
+    """
+    Toggle Servo 1 disable
+
+    :returns: void
+    """
+
+    def toggle_servo_one_disable(self):
+        self.__servo.toggle_disable(1)
+
+    """
     Get IR 0 value
 
     :returns: Float value in meters
     """
+
     def get_ir_zero(self, angle):
         return self.__ir.get_value(0)
 
@@ -500,6 +525,7 @@ class ArcBot(object):
 
     :returns: Float value in meters
     """
+
     def get_ir_one(self, angle):
         return self.__ir.get_value(1)
 
@@ -508,6 +534,7 @@ class ArcBot(object):
 
     :returns: Float value in meters
     """
+
     def get_ir_three(self, angle):
         return self.__ir.get_value(3)
 
@@ -516,6 +543,7 @@ class ArcBot(object):
 
     :returns: Float value in meters
     """
+
     def get_ultra_sonic_zero(self, angle):
         return self.__us.get_value(0)
 
@@ -524,6 +552,7 @@ class ArcBot(object):
 
     :returns: Float value in meters
     """
+
     def get_ultra_sonic_one(self, angle):
         return self.__us.get_value(1)
 
@@ -532,5 +561,6 @@ class ArcBot(object):
 
     :returns: Float value in meters
     """
+
     def get_ultra_sonic_three(self, angle):
         return self.__us.get_value(3)
