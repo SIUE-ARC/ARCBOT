@@ -1,7 +1,7 @@
 import serial
 import glob
 import time
-from libarcbot.utils.commandconstants import __CommandConstants
+from libarcbot.utils.commandconstants import CommandConstants
 
 class SerialManager(object):
     """SerialManager Interface"""
@@ -18,7 +18,7 @@ class SerialManager(object):
         super(SerialManager, self).__init__()
         self.__testing = testing
         self.__serial_connection = self.__open_serial_connection()
-        self.__command_constants = __CommandConstants()
+        self.__command_constants = CommandConstants()
 
     def __del__(self):
         if self.__serial_connection and self.__serial_connection.isOpen():

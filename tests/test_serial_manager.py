@@ -23,9 +23,9 @@ class TestSerialManager(TestCase):
         # waiting must be greater than 0
         self.assertEqual(waiting, 0)
         # check if the lengths are the same
-        self.assertEqual(len(result), len(command))
+        self.assertEqual(len(result), len(command + '\\r'))
         # the result should be equal to the command
-        self.assertEqual(command.encode('ascii'), result)
+        self.assertEqual((command+'\\r').encode('ascii'), result)
 
     def test_send_command_with_callback(self):
         # given a command
@@ -37,7 +37,7 @@ class TestSerialManager(TestCase):
         # and a callback function
 
         def callback_check_function(result): return self.assertEqual(
-            command.encode('ascii'), result)
+            (command + '\\r').encode('ascii'), result)
         # and another callback for completeness
 
         def callback_check_function_2(result): return self.assertNotEqual(

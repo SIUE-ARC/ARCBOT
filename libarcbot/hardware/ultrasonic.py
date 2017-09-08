@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from libarcbot.serialmanager.serialmanager import SerialManager
-from libarcbot.utils.commandconstants import __CommandConstants
+from libarcbot.utils.commandconstants import CommandConstants
 
 
 class UltraSonic(object):
@@ -11,7 +11,7 @@ class UltraSonic(object):
     def __init__(self):
         super(Infrared, self).__init__()
         self.__serial_manager = SerialManager.get_instance()
-        self.__command_constants = __CommandConstants()
+        self.__command_constants = CommandConstants()
 
     def get_value(self, id):
         # given a command

@@ -2,7 +2,7 @@
 from libarcbot.utils.constant import constant
 
 
-class __CommandConstants(object):
+class CommandConstants(object):
     """Create Command Constants"""
     @constant
     def SERIAL_TERMINATOR():

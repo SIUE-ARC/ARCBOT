@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import math
 from libarcbot.serialmanager.serialmanager import SerialManager
-from libarcbot.utils.commandconstants import __CommandConstants
+from libarcbot.utils.commandconstants import CommandConstants
 
 
 class Servo(object):
@@ -12,7 +12,7 @@ class Servo(object):
     def __init__(self):
         super(servo, self).__init__()
         self.__serial_manager = SerialManager.get_instance()
-        self.__command_constants = __CommandConstants()
+        self.__command_constants = CommandConstants()
 
     def __convert_degrees_to_ms(self, angle, zero=None, gain=None):
         zero = zero if zero is not None else self.__command_constants.SERVO_ZERO
