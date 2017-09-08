@@ -24,7 +24,7 @@ class Create(object):
         # and the speed with radius
         command = command + str(speed) + str(radius)
         # send the command and get the response
-        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        return self.__serial_manager.send_command(command)
 
     def drive_direct(self, lspeed, rspeed):
         # given a command
@@ -32,7 +32,7 @@ class Create(object):
         # and the left and right wheel speeds
         command = command + str(lspeed) + str(rspeed)
         # send the command and get the response
-        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        return self.__serial_manager.send_command(command)
 
     """
     Set Mode - Change which mode the Create is in
@@ -52,7 +52,7 @@ class Create(object):
         command = ids[mode]
         # and send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)
 
     """
     Set Demo - Runs a specific demo on the create
@@ -74,7 +74,7 @@ class Create(object):
         command = command + str(ids[demo])
         # and send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)
 
     """
     Get Bumper - Returns the current create bumper value
@@ -95,7 +95,7 @@ class Create(object):
         # add the appropriate ID to the command
         command = command + str(ids[bumper])
         # and send the command, returning the response
-        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        return self.__serial_manager.send_command(command)
 
     """
     Get Drop - Returns the value of a given drop sensor
@@ -116,7 +116,7 @@ class Create(object):
         # append the appropriate sensor id to the command
         command = command + str(ids[sensor])
         # and send the command, returning the value
-        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        return self.__serial_manager.send_command(command)
 
     """
     Get Wheel Drop - Returns whether the given wheel is 'dropped'
@@ -137,7 +137,7 @@ class Create(object):
         # append the appropriate wheel id to the command
         command = command + str(ids[wheel])
         # send the command, returning the value
-        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        return self.__serial_manager.send_command(command)
 
     """
     Get Clif - Return whether the given cliff sensor is True
@@ -158,7 +158,7 @@ class Create(object):
         # append the appropriate cliff id to the command
         command = command + str(ids[cliff])
         # send the command, returning the value
-        return self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR)
+        return self.__serial_manager.send_command(command)
 
     def wait_distance(self, distance):
         # given a command
@@ -167,7 +167,7 @@ class Create(object):
         command = command + str(distance)
         # send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)
 
     def wait_angle(self, angle):
         # given the command
@@ -176,7 +176,7 @@ class Create(object):
         command = command + str(angle)
         # send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)
 
     def wait_event(self, event):
         # given a command
@@ -190,4 +190,4 @@ class Create(object):
         command = command + str(ids[event])
         # send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)

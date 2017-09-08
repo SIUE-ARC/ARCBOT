@@ -2,6 +2,7 @@
 from libarcbot.serialmanager.serialmanager import SerialManager
 from libarcbot.utils.commandconstants import __CommandConstants
 
+
 class Infrared(object):
     """docstring for Infrared."""
     __serial_manager = None
@@ -18,4 +19,4 @@ class Infrared(object):
         # and an IR id
         command = command + str(id)
         # send the command, returning the value
-        return float(self.__serial_manager.send_command(command + self.__command_constants.SERIAL_TERMINATOR))
+        return float(self.__serial_manager.send_command(command))

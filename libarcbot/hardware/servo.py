@@ -28,7 +28,7 @@ class Servo(object):
         command = command + str(servo) + str(ms)
         # send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)
 
     def toggle_disable(self, servo):
         # given a command
@@ -37,4 +37,4 @@ class Servo(object):
         command = command + str(servo)
         # send the command
         self.__serial_manager.send_command(
-            command + self.__command_constants.SERIAL_TERMINATOR)
+            command)
