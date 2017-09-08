@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import math
 from libarcbot.mixins.canUseACreate import CanUseACreate
 from libarcbot.mixins.canUseDistanceSensors import CanUseDistanceSensors
 from libarcbot.mixins.canUseServos import CanUseServos
@@ -12,7 +11,6 @@ class ArcBot(CanUseACreate, CanUseDistanceSensors, CanUseServos):
     """Arc Bot Library Interface"""
     __camera = None
     __serial = None
-
 
     def __init__(self):
         super(ArcBot, self).__init__()
