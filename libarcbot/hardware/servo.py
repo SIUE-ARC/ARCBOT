@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 import math
+from libarcbot.serialmanager.serialmanager import SerialManager
 from libarcbot.utils.commandconstants import __CommandConstants
 
 
-class servo(object):
+class Servo(object):
     """Servo class"""
     __serial_manager = None
-    __command_constants = __CommandConstants()
+    __command_constants = None
 
-    def __init__(self, serial_manager):
+    def __init__(self):
         super(servo, self).__init__()
-        self.__serial_manager = serial_manager
+        self.__serial_manager = SerialManager.get_instance()
+        self.__command_constants = __CommandConstants()
 
     def __convert_degrees_to_ms(self, angle, zero=None, gain=None):
-        zero = if zero:
-            zero else self.__command_constants.SERVO_ZERO
-        gain = if gain:
-            gain else self.__command_constants.SERVO_GAIN
+        zero = zero if zero is not None else self.__command_constants.SERVO_ZERO
+        gain = gain if gain is not None else self.__command_constants.SERVO_GAIN
         return int(0.5 + zero + gain * angle)
 
     def set_angle(self, servo, angle, zero=None, gain=None):

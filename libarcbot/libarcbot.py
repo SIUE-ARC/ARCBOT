@@ -4,9 +4,8 @@ import math
 from libarcbot.camera.camera import Camera
 from libarcbot.create.create import Create
 from libarcbot.hardware.servo import Servo
-from libarcbot.utils.constants import Constants
 from libarcbot.hardware.infrared import Infrared
-from libarcbot.hardware.ultrasonic import UlstraSonic
+from libarcbot.hardware.ultrasonic import UltraSonic
 from libarcbot.serialmanager.serialmanager import SerialManager
 
 
@@ -316,7 +315,7 @@ class ArcBot(object):
     """
 
     def create_wait_right_bumper(self):
-        self.__create.wait_event("Right Bump)
+        self.__create.wait_event("Right Bump")
 
     """
     Tell the create to continue at its current velocity until the create hits a

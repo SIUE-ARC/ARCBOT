@@ -45,7 +45,7 @@ class __CommandConstants(object):
             "Cliff": 10,
             "Left Cliff": 11,
             "Front Left Cliff": 12,
-            "Front Right Cliff": 13
+            "Front Right Cliff": 13,
             "Right Cliff": 14,
             "Home Base": 15,
             "Advance Button": 16,
@@ -115,7 +115,7 @@ class __CommandConstants(object):
 
     # TODO: Get the actual IDS
     @constant
-    def CREATE_BUMPER_IDS:
+    def CREATE_BUMPER_IDS():
         return {
             'left': 0,
             'right': 1
@@ -164,7 +164,7 @@ class __CommandConstants(object):
     def CREATE_CLIFF_IDS():
         return {
             'left': 0,
-            'front left': 1
+            'front left': 1,
             'right': 2,
             'front right': 3
         }

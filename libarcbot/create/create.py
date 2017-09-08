@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
+from libarcbot.serialmanager.serialmanager import SerialManager
 from libarcbot.utils.commandconstants import __CommandConstants
 
 
 class Create(object):
     """docstring for Create."""
     __serial_manager = None
-    __command_constants = __CommandConstants()
+    __command_constants = None
     __MAX_VELOCITY_IN_METERS_PER_SECOND = 0.5
     __STRAIGHT_RADIUS = 0x7FFF
     __CLOCKWISE_RADIUS = 0xFFFF
     __COUNTER_CLOCKWISE_RADIUS = 0x0001
     __MAX_RADIUS_IN_METERS = 2
 
-    def __init__(self, serial_manager):
+    def __init__(self):
         super(Create, self).__init__()
-        self.__serial_manager = serial_manager
+        self.__serial_manager = SerialManager.get_instance()
+        self.__command_constants = __CommandConstants()
 
     def drive(self, speed, radius):
         # given a command

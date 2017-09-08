@@ -12,12 +12,13 @@ class SerialManager(object):
     __baudrate = 9600
     __arduino_greeting = "ohai"
     __arduino_reponse = "kthxbai"
-    __command_constants = __CommandConstants()
+    __command_constants = None
 
     def __init__(self, testing=False):
         super(SerialManager, self).__init__()
         self.__testing = testing
         self.__serial_connection = self.__open_serial_connection()
+        self.__command_constants = __CommandConstants()
 
     def __del__(self):
         if self.__serial_connection and self.__serial_connection.isOpen():
